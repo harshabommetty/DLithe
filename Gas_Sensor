@@ -1,0 +1,21 @@
+int BUZZER= 5;
+int GAS_SENSOR= 34;
+
+void setup() {
+  pinMode(GAS_SENSOR, OUTPUT);
+    pinMode(BUZZER, OUTPUT);
+}
+
+void loop() {
+    int sensorValue = analogRead(GAS_SENSOR);
+   
+    if (sensorValue > 2000) {  
+        digitalWrite(BUZZER, HIGH);  
+    } else {
+        digitalWrite(BUZZER, LOW);   
+
+    delay(500);
+}
+
+
+
