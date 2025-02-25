@@ -1,0 +1,17 @@
+int Sound_sensor = A0;
+int BUZZER = 6;
+void setup() {
+  pinMode(Sound_sensor, INPUT);
+  pinMode(BUZZER, OUTPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  int SS_value = analogRead(Sound_sensor);
+  if (SS_value > 500) {
+    digitalWrite(BUZZER, HIGH);
+  } else {
+    digitalWrite(BUZZER, LOW);
+  }
+  Serial.println(SS_value);
+  delay(1000);
+}
