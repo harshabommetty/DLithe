@@ -1,0 +1,38 @@
+#include <Bonezegei_DHT11.h>
+
+Bonezegei_DHT11 dht(14);
+int RELAY = 5;
+
+void setup() {
+  pinMode(RELAY, OUTPUT);
+  Serial.begin(115200);
+  dht.begin();
+}
+
+void loop() {
+  float tempDeg = 0;
+
+  if (dht.getData()) {                        
+    tempDeg = dht.getTemperature();            
+    float tempFar = dht.getTemperature(true);  
+    int hum = dht.getHumidity();              
+
+   
+    String str  = "Temperature: ";
+           str += tempDeg;
+           str += "°C  ";
+           str += tempFar;
+           str += "°F  Humidity:";
+           str += hum;
+    Serial.println(str.c_str());
+  }
+
+  if (tempDeg > 30) {
+    digitalWrite(RELAY, HIGH);
+    Serial.println("Fan ON");
+  } else {
+    digitalWrite(RELAY, LOW);
+    Serial.println("Fan OFF");
+  }
+
+  delay(10000);  
