@@ -1,0 +1,22 @@
+int TILT_SENSOR=18;
+int BUZZER=5;        
+
+void setup() {
+    Serial.begin(9600);
+    pinMode(TILT_SENSOR, INPUT);  
+    pinMode(BUZZER, OUTPUT);
+}
+
+void loop() {
+    int tiltState = digitalRead(TILT_SENSOR);
+
+    if (tiltState == LOW) {  
+        Serial.println("Tilt Detected");
+        digitalWrite(BUZZER, HIGH);  
+    } else {
+        Serial.println("No Tilt.");
+        digitalWrite(BUZZER, LOW);  
+    }
+
+    delay(500);
+}
